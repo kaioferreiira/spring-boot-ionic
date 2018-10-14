@@ -1,13 +1,8 @@
 package com.kaioferreira.cursomc;
 
-import com.kaioferreira.cursomc.domain.Categoria;
-import com.kaioferreira.cursomc.domain.Cidade;
-import com.kaioferreira.cursomc.domain.Estado;
-import com.kaioferreira.cursomc.domain.Produto;
-import com.kaioferreira.cursomc.repository.CategoriaRepository;
-import com.kaioferreira.cursomc.repository.CidadeRepository;
-import com.kaioferreira.cursomc.repository.EstadoRepository;
-import com.kaioferreira.cursomc.repository.ProdutoRepository;
+import com.kaioferreira.cursomc.domain.*;
+import com.kaioferreira.cursomc.domain.enums.TipoCliente;
+import com.kaioferreira.cursomc.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -25,7 +20,10 @@ public class CursomcApplication implements CommandLineRunner {
     private CidadeRepository cidadeRepository;
     @Autowired
     private EstadoRepository estadoRepository;
-
+    @Autowired
+    private EnderecoRepository enderecoRepository;
+    @Autowired
+    private  ClienteRepository clienteRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(CursomcApplication.class, args);
@@ -62,6 +60,20 @@ public class CursomcApplication implements CommandLineRunner {
 
         estadoRepository.saveAll(Arrays.asList(est1,est2));
         cidadeRepository.saveAll(Arrays.asList(c1,c2,c3));
+
+        //INSTANCIANCO CLIENTES
+        Cliente cli1 = new Cliente(null, "Maria", "maria@gmail.com", "123", TipoCliente.PESSOAFISICA);
+        cli1.getTelefones().addAll(Arrays.asList("1231","45645"));
+
+        //INSTANCIANDO ENDEREÇO
+        Endereco e1 = new Endereco(null,"rua teste","300","Apt 300","Jardim","12313", cli1, c1);
+        Endereco e2 = new Endereco(null,"rua teste2","302","Apt 302","Jardim2","12313", cli1, c2);
+
+        cli1.getEnderecos().addAll(Arrays.asList(e1,e2));
+
+        clienteRepository.saveAll(Arrays.asList(cli1));
+        enderecoRepository.saveAll(Arrays.asList(e1, e2));
+
 
     }
 }
