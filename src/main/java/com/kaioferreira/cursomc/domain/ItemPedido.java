@@ -1,5 +1,7 @@
 package com.kaioferreira.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 
@@ -7,6 +9,7 @@ import javax.persistence.Entity;
 public class ItemPedido {
 
     //atributo composto
+    @JsonIgnore
     @EmbeddedId
     private ItemPedidoPK id =  new ItemPedidoPK();
 
@@ -57,6 +60,7 @@ public class ItemPedido {
         this.id = id;
     }
 
+    @JsonIgnore
     public Pedido getPedido(){
         return  id.getPedido();
     }

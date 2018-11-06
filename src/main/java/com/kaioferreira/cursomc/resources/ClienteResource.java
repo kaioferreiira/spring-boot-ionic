@@ -2,7 +2,6 @@ package com.kaioferreira.cursomc.resources;
 
 import com.kaioferreira.cursomc.domain.Categoria;
 import com.kaioferreira.cursomc.domain.Cliente;
-import com.kaioferreira.cursomc.service.CategoriaService;
 import com.kaioferreira.cursomc.service.ClienteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

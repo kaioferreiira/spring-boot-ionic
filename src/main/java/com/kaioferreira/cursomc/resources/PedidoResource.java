@@ -1,7 +1,7 @@
 package com.kaioferreira.cursomc.resources;
 
-import com.kaioferreira.cursomc.domain.Categoria;
-import com.kaioferreira.cursomc.service.CategoriaService;
+import com.kaioferreira.cursomc.domain.Pedido;
+import com.kaioferreira.cursomc.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(value = "/categorias")
-public class CategoriaResource {
+@RequestMapping(value = "/pedidos")
+public class PedidoResource {
 
     @Autowired
-    private CategoriaService categoriaService;
+    private PedidoService pedidoService;
 
     @GetMapping(value="/{id}")
     public ResponseEntity <?> findById(@PathVariable Integer id){
-        Categoria obj = categoriaService.buscar(id);
+        Pedido obj = pedidoService.buscar(id);
         return ResponseEntity.ok().body(obj);
     }
 }
